@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pay ₹500 - Sudheer Kumar</title>
+<title>UPI Payment - Sudheer Kumar</title>
 
 <style>
 * { box-sizing: border-box; }
@@ -23,7 +23,7 @@ body {
 .card {
   width: 100%;
   max-width: 380px;
-  padding: 32px 24px;
+  padding: 30px 24px;
   text-align: center;
   background: white;
   border-radius: 24px;
@@ -43,37 +43,38 @@ body {
 
 h2 { color: #35204f; }
 
-.subtitle {
-  color: #777;
-  font-size: 14px;
-}
+.subtitle { color: #777; }
 
-.amount {
-  margin: 25px 0;
-  color: #673ab7;
-  font-size: 46px;
+.amount-label {
+  display: block;
+  margin: 24px 0 8px;
   font-weight: bold;
+  text-align: left;
 }
 
-.details {
+input {
+  width: 100%;
   padding: 14px;
-  margin-bottom: 22px;
-  background: #f8f5fc;
-  border-radius: 12px;
-  overflow-wrap: anywhere;
-  color: #555;
-  font-size: 14px;
+  border: 2px solid #ded0f5;
+  border-radius: 10px;
+  font-size: 20px;
+  text-align: center;
+  outline-color: #673ab7;
 }
 
 .pay {
   display: block;
+  margin-top: 18px;
   padding: 16px;
   color: white;
   background: #673ab7;
+  border: none;
   border-radius: 12px;
   text-decoration: none;
   font-size: 18px;
   font-weight: bold;
+  cursor: pointer;
+  width: 100%;
 }
 
 .pay:active { background: #512795; }
@@ -92,26 +93,59 @@ h2 { color: #35204f; }
   <div class="logo">₹</div>
 
   <h2>UPI Payment Request</h2>
-  <p class="subtitle">A payment request from</p>
-  <h3>Sudheer Kumar</h3>
+  <p class="subtitle">Pay to Sudheer Kumar</p>
 
-  <div class="amount">₹500</div>
+  <label class="amount-label" for="amount">
+    Enter Amount (₹)
+  </label>
 
-  <div class="details">
-    <strong>UPI ID</strong><br>
-    sudheerkasulanati@ybl
-  </div>
+  <input
+    type="number"
+    id="amount"
+    placeholder="Enter amount"
+    min="1"
+    max="100000"
+    step="0.01"
+    inputmode="decimal"
+  >
 
-  <a class="pay"
-     href="upi://pay?pa=sudheerkasulanati%40ybl&amp;pn=Sudheer%20Kumar&amp;am=500&amp;cu=INR">
-     Pay ₹500 Now →
-  </a>
+  <button class="pay" onclick="payNow()">
+    Pay Now →
+  </button>
 
   <p class="note">
-    Secure your payment by checking the recipient's
-    name and amount in your UPI app before approving.
-    Never share your UPI PIN with anyone.
+    Verify the recipient's name and amount in your
+    UPI app before approving the payment.
+    Never share your UPI PIN.
   </p>
 </div>
+
+<script>
+function payNow() {
+  const input = document.getElementById("amount");
+  const amount = Number(input.value);
+
+  if (
+    input.value.trim() === "" ||
+    !Number.isFinite(amount) ||
+    amount <= 0 ||
+    amount > 100000 ||
+    Math.round(amount * 100) !== amount * 100
+  ) {
+    alert("Please enter a valid amount between ₹1 and ₹1,00,000.");
+    input.focus();
+    return;
+  }
+
+  const params = new URLSearchParams({
+    pa: "sudheerkasulanati@ybl",
+    pn: "Sudheer Kumar",
+    am: amount.toFixed(2),
+    cu: "INR"
+  });
+
+  window.location.href = "upi://pay?" + params.toString();
+}
+</script>
 </body>
 </html>
