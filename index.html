@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pay ₹500 - Sudheer Kumar</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #eee5ff, #f9f5ff);
+}
+
+.card {
+  width: 100%;
+  max-width: 380px;
+  padding: 32px 24px;
+  text-align: center;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 12px 40px #4b267b20;
+}
+
+.logo {
+  width: 65px;
+  height: 65px;
+  line-height: 65px;
+  margin: auto;
+  border-radius: 50%;
+  background: #f0e6ff;
+  color: #673ab7;
+  font-size: 30px;
+}
+
+h2 { color: #35204f; }
+
+.subtitle {
+  color: #777;
+  font-size: 14px;
+}
+
+.amount {
+  margin: 25px 0;
+  color: #673ab7;
+  font-size: 46px;
+  font-weight: bold;
+}
+
+.details {
+  padding: 14px;
+  margin-bottom: 22px;
+  background: #f8f5fc;
+  border-radius: 12px;
+  overflow-wrap: anywhere;
+  color: #555;
+  font-size: 14px;
+}
+
+.pay {
+  display: block;
+  padding: 16px;
+  color: white;
+  background: #673ab7;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.pay:active { background: #512795; }
+
+.note {
+  margin-top: 22px;
+  color: #777;
+  font-size: 12px;
+  line-height: 1.6;
+}
+</style>
+</head>
+
+<body>
+<div class="card">
+  <div class="logo">₹</div>
+
+  <h2>UPI Payment Request</h2>
+  <p class="subtitle">A payment request from</p>
+  <h3>Sudheer Kumar</h3>
+
+  <div class="amount">₹500</div>
+
+  <div class="details">
+    <strong>UPI ID</strong><br>
+    sudheerkasulanati@ybl
+  </div>
+
+  <a class="pay"
+     href="upi://pay?pa=sudheerkasulanati%40ybl&amp;pn=Sudheer%20Kumar&amp;am=500&amp;cu=INR">
+     Pay ₹500 Now →
+  </a>
+
+  <p class="note">
+    Secure your payment by checking the recipient's
+    name and amount in your UPI app before approving.
+    Never share your UPI PIN with anyone.
+  </p>
+</div>
+</body>
+</html>
